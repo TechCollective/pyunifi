@@ -236,6 +236,29 @@ class Controller:  # pylint: disable=R0902,R0904
         params = {"archived": False}
         return self._api_write("stat/alarm", params=params)
 
+    def get_syslogs(self, past_time=None):
+        """Return a list of System Logs."""
+        furture_time = time.time_ns() // 1000000 + 86400000
+        params = {"timestampFrom": hour_past, 
+                  "timestampTo": furture_time, 
+                  "pageSize": 100, 
+                  "categories": [
+                        "INTERNET", 
+                        "POWER", 
+                        "DEVICES", 
+                        "SYSTEM"], 
+                  "pageNumber": 0, 
+                  "systemLogDeviceTypes": [
+    	                "GATEWAYS", 
+                        "SWITCHES", 
+                        "ACCESS_POINT", 
+                        "SMART_POWER", 
+                        "BUILDING_TO_BUILDING_BRIDGES", 
+                        "UNIFI_LTE", 
+                        "NON_NETWORK_DEVICES"]
+                  }
+        return self._api_write_v2("system-log/system-critical-alert", params=params)
+
     def get_statistics_last_24h(self):
         """Returns statistical data of the last 24h"""
         return self.get_statistics_24h(time.time())
