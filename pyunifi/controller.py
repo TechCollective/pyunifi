@@ -127,6 +127,9 @@ class Controller:  # pylint: disable=R0902,R0904
 
     def _api_url(self):
         return self.url + "api/s/" + self.site_id + "/"
+    
+    def _api_url_v2():
+        return c.url + "v2/api/site/" + c.site_id + "/"
 
     @retry_login
     def _read(self, url, params=None):
@@ -152,6 +155,9 @@ class Controller:  # pylint: disable=R0902,R0904
 
     def _api_write(self, url, params=None):
         return self._write(self._api_url() + url, params)
+    
+    def _api_write_v2(url, params=None):
+        return c._write(_api_url_v2() + url, params)
 
     @retry_login
     def _update(self, url, params=None):
