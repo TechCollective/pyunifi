@@ -22,6 +22,19 @@ class APIError(Exception):
     """API Error exceptions"""
 
 
+# TODO check schdule
+# Get what is current scheduled
+# Example client is MayyimHayyim
+# GET https: // btcunifi.com: 8443/api/s/hgcr3iuv/rest/scheduletask?action = upgrade
+# response
+# {"meta":{"rc":"ok"},"data":[{"upgrade_targets":[{"mac":"fc:ec:da:3d:f5:b3"},{"mac":"74:ac:b9:b0:84:32"},{"mac":"18:e8:29:49:68:27"},{"mac":"ac:8b:a9:40:4c:d6"}],"cron_expr":"0 0 * * 0","name":"Updates","site_id":"5e206fdda685b423d8165ec1","action":"upgrade","_id":"5f04be88a685b47db47e06e8"}]}
+# Change the scheudle - I removed a device from the schedule
+# PUT https: // btcunifi.com: 8443/api/s/hgcr3iuv/rest/scheduletask/5f04be88a685b47db47e06e8
+# request - {"cron_expr":"0 0 * * 0","name":"Updates","site_id":"5e206fdda685b423d8165ec1","action":"upgrade","_id":"5f04be88a685b47db47e06e8","upgrade_targets":[{"mac":"74:ac:b9:b0:84:32"},{"mac":"18:e8:29:49:68:27"},{"mac":"fc:ec:da:3d:f5:b3"}]}
+# response - {"meta":{"rc":"ok"},"data":[{"upgrade_targets":[{"mac":"74:ac:b9:b0:84:32"},{"mac":"18:e8:29:49:68:27"},{"mac":"fc:ec:da:3d:f5:b3"}],"cron_expr":"0 0 * * 0","name":"Updates","site_id":"5e206fdda685b423d8165ec1","action":"upgrade","_id":"5f04be88a685b47db47e06e8"}]}
+
+
+
 def retry_login(func, *args, **kwargs):  # pylint: disable=w0613
     """To reattempt login if requests exception(s) occur at time of call"""
 
@@ -129,7 +142,7 @@ class Controller:  # pylint: disable=R0902,R0904
         return self.url + "api/s/" + self.site_id + "/"
     
     def _api_url_v2():
-        return c.url + "v2/api/site/" + c.site_id + "/"
+        return self.url + "v2/api/site/" + c.site_id + "/"
 
     @retry_login
     def _read(self, url, params=None):
@@ -156,8 +169,8 @@ class Controller:  # pylint: disable=R0902,R0904
     def _api_write(self, url, params=None):
         return self._write(self._api_url() + url, params)
     
-    def _api_write_v2(url, params=None):
-        return c._write(_api_url_v2() + url, params)
+    def _api_write_v2(self, url, params=None):
+        return self._write(_api_url_v2() + url, params)
 
     @retry_login
     def _update(self, url, params=None):
@@ -238,8 +251,11 @@ class Controller:  # pylint: disable=R0902,R0904
 
     def get_syslogs(self, past_time=None):
         """Return a list of System Logs."""
+        # current ephoc ime + 24 hours
         furture_time = time.time_ns() // 1000000 + 86400000
-        params = {"timestampFrom": hour_past, 
+        if past_time is None:
+            past_time = 0
+        params = {"timestampFrom": past_time, 
                   "timestampTo": furture_time, 
                   "pageSize": 100, 
                   "categories": [
