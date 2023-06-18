@@ -25,11 +25,11 @@ class APIError(Exception):
 # TODO check schdule
 # Get what is current scheduled
 # Example client is MayyimHayyim
-# GET https: // btcunifi.com: 8443/api/s/hgcr3iuv/rest/scheduletask?action = upgrade
+# GET https: // DOMAIN.com: 8443/api/s/hgcr3iuv/rest/scheduletask?action = upgrade
 # response
 # {"meta":{"rc":"ok"},"data":[{"upgrade_targets":[{"mac":"fc:ec:da:3d:f5:b3"},{"mac":"74:ac:b9:b0:84:32"},{"mac":"18:e8:29:49:68:27"},{"mac":"ac:8b:a9:40:4c:d6"}],"cron_expr":"0 0 * * 0","name":"Updates","site_id":"5e206fdda685b423d8165ec1","action":"upgrade","_id":"5f04be88a685b47db47e06e8"}]}
 # Change the scheudle - I removed a device from the schedule
-# PUT https: // btcunifi.com: 8443/api/s/hgcr3iuv/rest/scheduletask/5f04be88a685b47db47e06e8
+# PUT https: // DOMAIN.com: 8443/api/s/hgcr3iuv/rest/scheduletask/5f04be88a685b47db47e06e8
 # request - {"cron_expr":"0 0 * * 0","name":"Updates","site_id":"5e206fdda685b423d8165ec1","action":"upgrade","_id":"5f04be88a685b47db47e06e8","upgrade_targets":[{"mac":"74:ac:b9:b0:84:32"},{"mac":"18:e8:29:49:68:27"},{"mac":"fc:ec:da:3d:f5:b3"}]}
 # response - {"meta":{"rc":"ok"},"data":[{"upgrade_targets":[{"mac":"74:ac:b9:b0:84:32"},{"mac":"18:e8:29:49:68:27"},{"mac":"fc:ec:da:3d:f5:b3"}],"cron_expr":"0 0 * * 0","name":"Updates","site_id":"5e206fdda685b423d8165ec1","action":"upgrade","_id":"5f04be88a685b47db47e06e8"}]}
 
