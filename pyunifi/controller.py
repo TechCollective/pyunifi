@@ -9,6 +9,7 @@ import logging
 
 import requests
 from urllib3.exceptions import InsecureRequestWarning
+import pyunifi.models
 
 
 """For testing purposes:
@@ -332,10 +333,22 @@ class Controller:  # pylint: disable=R0902,R0904
         """Return health information."""
         return self._api_read("stat/health")
 
+    # Interacting with Sites
+    # Old
     def get_sites(self):
         """Return a list of all sites,
         with their UID and description"""
         return self._read(self.url + "api/self/sites")
+    
+    def sites_get(self):
+        """Return a list of all sites,
+        with their UID and description"""
+        site_list = model.siteslist()
+        for site in self._read(self.url + "api/self/sites"):
+            site_obj = model.site.from_api_return(site)
+            site_list
+        return 
+
 
     def get_wlan_conf(self):
         """Return a list of configured WLANs
