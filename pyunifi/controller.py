@@ -9,7 +9,7 @@ import logging
 
 import requests
 from urllib3.exceptions import InsecureRequestWarning
-import pyunifi.models
+import models
 
 
 """For testing purposes:
