@@ -62,7 +62,7 @@ class Siteslist(object):
                 ))
             else:
                 result[attr] = value
-        if issubclass(Systemslist, dict):
+        if issubclass(Siteslist, dict):
             for key, value in self.items():
                 result[key] = value
 
