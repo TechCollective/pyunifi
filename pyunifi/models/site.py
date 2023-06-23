@@ -80,7 +80,7 @@ class Site(object):
     def desc(self):
         return self.desc
 
-    @idesc.setter
+    @desc.setter
     def desc(self, desc):
         self._desc = desc
 
