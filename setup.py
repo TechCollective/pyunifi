@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='pyunifi',
     version='2.21',
@@ -8,7 +8,7 @@ setup(name='pyunifi',
     author='Caleb Dunn',
     author_email='finish.06@gmail.com',
     url='https://github.com/finish06/unifi-api',
-    packages=['pyunifi'],
+    packages=find_packages(),
     include_package_data=True,      
     scripts=['unifi-create-voucher', 'unifi-ls-clients'],
     classifiers=[],
