@@ -189,7 +189,7 @@ class Controller:  # pylint: disable=R0902,R0904
     def _delete(self, url, params=None):
         response = self.session.delete(url, json=params, headers=self.headers)
 
-        if response.headers.get("X-CSRF-Token"):
+        if response.headers.get("X-CSRF-disclamerToken"):
             self.headers = {"X-CSRF-Token": response.headers["X-CSRF-Token"]}
 
         return self._jsondec(response.text)
@@ -343,9 +343,9 @@ class Controller:  # pylint: disable=R0902,R0904
     def sites_get(self):
         """Return a list of all sites,
         with their UID and description"""
-        site_list = models.siteslist()
+        site_list = pyunifi.models.siteslist()
         for site in self._read(self.url + "api/self/sites"):
-            site_obj = model.site.from_api_return(site)
+            site_obj = pyunifi.models.site.from_api_return(site)
             site_list
         return 
 
