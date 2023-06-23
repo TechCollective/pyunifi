@@ -110,12 +110,12 @@ class Site(object):
     @classmethod
     def from_api_return(cls, data):
         return cls(
-            anonymous_id=date['anonymous_id'],
-            name=date['name'],
-            id=date['id'],
-            desc=date['desc'],
-            role=date['role'],
-            device_count=date['device_count']
+            anonymous_id=data['anonymous_id'],
+            name=data['name'],
+            id=data['id'],
+            desc=data['desc'],
+            role=data['role'],
+            device_count=data['device_count']
         )
 
 
