@@ -19,7 +19,7 @@ class Siteslist(object):
         'timestamp': 'timestamp'
     }
 
-    def __init__(self, results=None, total_count=None):
+    def __init__(self, results=None, total_count=None, timestamp=None):
         self._results = None
         self._total_count = None
         self._timestamp = None
