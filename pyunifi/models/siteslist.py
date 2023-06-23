@@ -29,7 +29,8 @@ class Siteslist(object):
             self.results = results
         if total_count is not None:
             self.total_count = total_count
-        self.timestamp = datetime.now().isoformat()
+        if timestamp is None:
+            self.timestamp = datetime.now().isoformat()
 
     @property
     def results(self):
@@ -38,6 +39,7 @@ class Siteslist(object):
     @results.setter
     def results(self, results):
         self._results = results
+        self.total_count = len(results)
 
     @property
     def total_count(self):
