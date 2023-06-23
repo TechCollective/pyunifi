@@ -112,7 +112,7 @@ class Site(object):
         return cls(
             anonymous_id=data['anonymous_id'],
             name=data['name'],
-            id=data['id'],
+            id=data['_id'],
             desc=data['desc'],
             role=data['role'],
             device_count=data['device_count']
