@@ -45,7 +45,7 @@ class Siteslist(object):
     def to_dict(self):
         result = {}
 
-        for attr, _ in six.iteritems(self.swagger_types):
+        for attr, _ in six.iteritems(self.unifi_types):
             value = getattr(self, attr)
             if isinstance(value, list):
                 result[attr] = list(map(
