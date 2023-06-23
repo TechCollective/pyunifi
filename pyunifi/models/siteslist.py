@@ -16,7 +16,7 @@ class Siteslist(object):
     attribute_map = {
         'results': 'results',
         'total_count': 'totalCount',
-+        'timestamp': 'timestamp'
+        'timestamp': 'timestamp'
     }
 
     def __init__(self, results=None, total_count=None):
