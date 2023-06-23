@@ -343,7 +343,7 @@ class Controller:  # pylint: disable=R0902,R0904
     def sites_get(self):
         """Return a list of all sites,
         with their UID and description"""
-        site_list = pyunifi.models.siteslist()
+        site_list = pyunifi.models.Siteslist()
         for site in self._read(self.url + "api/self/sites"):
             site_obj = pyunifi.models.site.from_api_return(site)
             site_list
