@@ -5,6 +5,7 @@ from __future__ import absolute_import
 import urllib3
 from pyunifi.models.site import Site
 from pyunifi.models.siteslist import Siteslist
+import pyunifi.controller
 
 def http_debug_log_stderr():
     """Dump requests urllib3 debug messages to stderr"""
