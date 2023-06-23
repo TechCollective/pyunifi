@@ -1,6 +1,7 @@
 import pprint
 import re  # noqa: F401
 import six
+from datetime import datetime
 
 from pyunifi.models.site import Site
 
@@ -8,23 +9,27 @@ from pyunifi.models.site import Site
 class Siteslist(object):
     unifi_types = {
         'results': 'list[Site]',
-        'total_count': 'int'
+        'total_count': 'int',
+        'timestamp': 'str'
     }
 
     attribute_map = {
         'results': 'results',
-        'total_count': 'totalCount'
+        'total_count': 'totalCount',
++        'timestamp': 'timestamp'
     }
 
     def __init__(self, results=None, total_count=None):
         self._results = None
         self._total_count = None
+        self._timestamp = None
         self.discriminator = None
 
         if results is not None:
             self.results = results
         if total_count is not None:
             self.total_count = total_count
+        self.timestamp = datetime.now().isoformat()
 
     @property
     def results(self):
@@ -41,6 +46,14 @@ class Siteslist(object):
     @total_count.setter
     def total_count(self, total_count):
         self._total_count = total_count
+
+    @property
+    def timestamp(self):
+        return self._timestamp
+
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        self._timestamp = timestamp
 
     def to_dict(self):
         result = {}
