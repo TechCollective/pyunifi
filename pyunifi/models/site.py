@@ -62,7 +62,7 @@ class Site(object):
 
     @property
     def name(self):
-        return self.name
+        return self._name
 
     @name.setter
     def name(self, name):
@@ -70,7 +70,7 @@ class Site(object):
 
     @property
     def id(self):
-        return self.id
+        return self._id
 
     @id.setter
     def id(self, id):
@@ -78,7 +78,7 @@ class Site(object):
         
     @property
     def desc(self):
-        return self.desc
+        return self._desc
 
     @desc.setter
     def desc(self, desc):
@@ -86,7 +86,7 @@ class Site(object):
 
     @property
     def role(self):
-        return self.role
+        return self._role
 
     @role.setter
     def role(self, role):
@@ -94,7 +94,7 @@ class Site(object):
 
     @property
     def device_count(self):
-        return self.device_count
+        return self._device_count
 
     @device_count.setter
     def device_count(self, device_count):
