@@ -343,8 +343,11 @@ class Controller:  # pylint: disable=R0902,R0904
     def sites_get(self):
         """Return a list of all sites,
         with their UID and description"""
-        sites_list = pyunifi.models.Siteslist(self._read(self.url + "api/self/sites"))
-        return sites_list
+        sites_list = []
+        for site in self._read(self.url + "api/self/sites"):
+            sites_list.append( pyunifi.models.Site.from_api_return(site) )
+        sites_list_obj = pyunifi.models.Siteslist(sites_list)
+        return sites_list_obj
 
 
     def get_wlan_conf(self):
