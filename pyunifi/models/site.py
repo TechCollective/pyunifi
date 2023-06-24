@@ -140,7 +140,7 @@ class Site(object):
                 ))
             else:
                 result[attr] = value
-        if issubclass(System, dict):
+        if issubclass(Site, dict):
             for key, value in self.items():
                 result[key] = value
 
@@ -156,7 +156,7 @@ class Site(object):
 
     def __eq__(self, other):
         """Returns true if both objects are equal"""
-        if not isinstance(other, System):
+        if not isinstance(other, Site):
             return False
 
         return self.__dict__ == other.__dict__
